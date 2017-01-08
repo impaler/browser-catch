@@ -9,7 +9,7 @@ const browserCatchUrl = require('../dist').browserCatchUrl
 const reporter = require('../dist/reporters/reporter')
 
 program
-  .version('0.0.1')
+  .version('0.0.1-alpha.1')
   .arguments('<cmd> [env]')
   .description(`A utility to catch browser runtime console errors.
   

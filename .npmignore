@@ -1,0 +1,11 @@
+/test
+/src
+npm-debug.log*
+yarn-error.log*
+CONTRIBUTING.md
+nwb.config.js
+yarn.lock
+.editorconfig
+.travis.yml
+.idea
+.vscode
