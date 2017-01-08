@@ -1,0 +1,59 @@
+exports[`phantomjs catch 0 errors 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [],
+}
+`;
+
+exports[`phantomjs catch 0 errors to json 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [],
+}
+`;
+
+exports[`phantomjs catch 0 errors to stdout json 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [],
+}
+`;
+
+exports[`phantomjs catch 1 errors 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [
+    Object {
+      "level": "SEVERE",
+      "message": "A regular console.error
+  error (:0)",
+    },
+  ],
+}
+`;
+
+exports[`phantomjs catch 1 errors to json 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [
+    Object {
+      "level": "SEVERE",
+      "message": "A regular console.error
+  error (:0)",
+    },
+  ],
+}
+`;
+
+exports[`phantomjs catch 1 errors to stdout json 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [
+    Object {
+      "level": "SEVERE",
+      "message": "A regular console.error
+  error (:0)",
+    },
+  ],
+}
+`;

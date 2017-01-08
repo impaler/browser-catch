@@ -1,0 +1,37 @@
+exports[`ChromeDriver catch 0 errors 1`] = `
+Object {
+  "driverType": "chrome",
+  "errors": Array [],
+}
+`;
+
+exports[`ChromeDriver catch 0 errors to stdout json 1`] = `
+Object {
+  "driverType": "chrome",
+  "errors": Array [],
+}
+`;
+
+exports[`ChromeDriver catch 1 error 1`] = `
+Object {
+  "driverType": "chrome",
+  "errors": Array [
+    Object {
+      "level": "SEVERE",
+      "message": "http://localhost:9999/error 6:20 \"A regular console.error\"",
+    },
+  ],
+}
+`;
+
+exports[`ChromeDriver catch 1 error to stdout json 1`] = `
+Object {
+  "driverType": "chrome",
+  "errors": Array [
+    Object {
+      "level": "SEVERE",
+      "message": "http://localhost:9999/error 6:20 \"A regular console.error\"",
+    },
+  ],
+}
+`;
