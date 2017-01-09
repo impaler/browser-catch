@@ -21,15 +21,8 @@ export function create (driverOptions, options) {
   return webdriverio.remote(webdriverOptions)
 }
 
-export async function getBrowserLogs (url, client, options) {
-  await client.init()
-  await gotoUrl(client, url)
-  await client.pause(options.pause)
-
+export async function getBrowserLogs (client, options) {
   let logs = await attachLogs(client, options)
-
-  await client.end()
-
   return logs
 }
 
@@ -39,7 +32,7 @@ function attachLogs (client, options) {
     .then(filterWarnings.bind(null, options))
 }
 
-function gotoUrl (client, url) {
+export function gotoUrl (client, url) {
   return client
     .url(url)
     .getUrl()

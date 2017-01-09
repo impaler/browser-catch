@@ -57,3 +57,23 @@ Object {
   ],
 }
 `;
+
+exports[`phantomjs option waitFor 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [],
+}
+`;
+
+exports[`phantomjs option waitForExist with a throw just after 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [
+    Object {
+      "level": "SEVERE",
+      "message": "wow
+  (anonymous function) (http://localhost:9999/wait-for-thrws:23)",
+    },
+  ],
+}
+`;

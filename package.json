@@ -17,7 +17,7 @@
     "build:deploy": "rm -rf dist && babel src -d dist",
     "build:watch": "npm run build -- --watch",
     "test": "npm run build && npm run test:phantomjs",
-    "test:watch": "npm run test:phantomjs -- --watch & npm run build:watch",
+    "test:watch": "npm run test:phantomjs -- --watch",
     "test:all": "npm run test:phantomjs; npm run test:webdriver",
     "test:phantomjs": "ava --match='*phantomjs*'",
     "test:webdriver": "npm run chromedriver:start; ava --match='!*webdriver-custom-url*'; npm run chromedriver:stop",
@@ -29,11 +29,11 @@
   },
   "dependencies": {
     "ansicolors": "^0.3.2",
+    "babel-polyfill": "^6.20.0",
     "commander": "^2.9.0",
     "figures": "^2.0.0",
     "phantomjs-prebuilt": "^2.1.13",
-    "webdriverio": "^4.2.16",
-    "babel-polyfill": "^6.20.0"
+    "webdriverio": "^4.2.16"
   },
   "devDependencies": {
     "ava": "avajs/ava#314f7a05bfa0f20b97192654885750237d133a18",
@@ -49,7 +49,7 @@
   },
   "ava": {
     "files": [
-      "test/e2e/*.test.js",
+      "tests/e2e/*.test.js",
       "!**/*js.snap"
     ],
     "source": [

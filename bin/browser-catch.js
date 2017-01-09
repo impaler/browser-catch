@@ -7,11 +7,14 @@ require('babel-polyfill')
 
 const browserCatchUrl = require('../dist').browserCatchUrl
 const reporter = require('../dist/reporters/reporter')
+const packageMetaData = require('../package.json')
 
 program
-  .version('0.0.1-alpha.1')
+  .version(packageMetaData.version)
   .arguments('<cmd> [env]')
   .description(`A utility to catch browser runtime console errors.
+  
+  version ${packageMetaData.version}
   
   Example:
   
@@ -19,6 +22,9 @@ program
   .usage('<url> [options]')
   .option('-j, --json', 'output only json of the result to stdout')
   .option('-v, --verbose', 'verbose level logging to stdout')
+  .option('--wait-for-exist-reverse', '')
+  .option('-f, --wait-for-exist <selector>', '')
+  .option('--wait-for-exist-ms <ms>', '', parseIntDefault, 10000)
   .option('-p, --pause <ms>', 'in milliseconds, pause for errors to occur', parseIntDefault, 0)
   .option('-w, --webdriver-host <url>', 'set the a specific webdriver host', '127.0.0.1')
   .option('-P, --webdriver-port <port>', 'set a custom selenium port', 4444)
@@ -34,8 +40,16 @@ if (program.args.length > 0) {
     webdriverPort: program.webdriverPort,
     driverType: program.driver,
     json: !!(program.json),
-    verbose: !!(program.verbose)
+    verbose: !!(program.verbose),
+    waitForExist: program.waitForExist || false,
+    waitForExistMs: program.waitForExistMs,
+    waitForExistReverse: !!(program.waitForExistReverse)
   }
+
+  if(options.verbose) console.log(`
+Running browser-catch with command options:
+${JSON.stringify(options, null, 2)}
+`)
 
   browserCatchUrl(url, options)
     .then(onDone.bind(null, options))
