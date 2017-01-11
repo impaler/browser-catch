@@ -54,3 +54,23 @@ test('phantomjs catch 0 errors to stdout json', async t => {
   t.is(errorsParsed.errors.length, 0)
   t.snapshot(errorsParsed)
 })
+
+test('phantomjs option waitFor', async t => {
+  const port = t.context.server.port
+  const errors = await fork([`localhost:${port}/append-element-after`, '-f', '.appended-after-5000'])
+  const errorsParsed = stripDefaultReporterHack(errors.stdout, port)
+
+  t.is(errorsParsed.driverType, 'phantomjs')
+  t.is(errorsParsed.errors.length, 0)
+  t.snapshot(errorsParsed)
+})
+
+test.only('phantomjs option waitForExist with a throw just after', async t => {
+  const port = t.context.server.port
+  const errors = await fork([`localhost:${port}/wait-for-thrws`, '-f', '.appended-after-2000', '-p', 2000])
+  const errorsParsed = stripDefaultReporterHack(errors.stdout, port)
+
+  t.is(errorsParsed.driverType, 'phantomjs')
+  t.is(errorsParsed.errors.length, 1)
+  t.snapshot(errorsParsed)
+})
