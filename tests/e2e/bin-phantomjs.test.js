@@ -1,3 +1,4 @@
+const path = require('path')
 import test from 'ava'
 
 require('babel-polyfill')
@@ -65,7 +66,7 @@ test('phantomjs option waitFor', async t => {
   t.snapshot(errorsParsed)
 })
 
-test.only('phantomjs option waitForExist with a throw just after', async t => {
+test('phantomjs option waitForExist with a throw just after', async t => {
   const port = t.context.server.port
   const errors = await fork([`localhost:${port}/wait-for-thrws`, '-f', '.appended-after-2000', '-p', 2000])
   const errorsParsed = stripDefaultReporterHack(errors.stdout, port)
@@ -74,3 +75,18 @@ test.only('phantomjs option waitForExist with a throw just after', async t => {
   t.is(errorsParsed.errors.length, 1)
   t.snapshot(errorsParsed)
 })
+
+test('phantomjs option run a custom async script with webdriver calls', async t => {
+  const port = t.context.server.port
+  const scriptPath = path.resolve(__dirname, '../fixtures/custom-run.js')
+  const errors = await fork([`localhost:${port}/dogs`, '--run', scriptPath, '-j'])
+  const errorsParsed = stripDefaultReporterHack(errors.stdout, port)
+
+  t.is(errorsParsed.driverType, 'phantomjs')
+  t.is(errorsParsed.errors.length, 0)
+  t.snapshot(errorsParsed)
+})
+
+// test('phantomjs option run a custom async script that throws', async t => {
+//
+// })

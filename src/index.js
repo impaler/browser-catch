@@ -17,6 +17,10 @@ export async function browserCatchUrl (url, options) {
     let start = Date.now()
     await gotoUrl(client, url)
 
+    if (options.run) {
+      await runScript(options.run, client, options)
+    }
+
     // http://webdriver.io/api/utility/waitForExist.html
     if (options.waitForExist) {
       if (options.verbose) console.log(`
@@ -51,6 +55,19 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
   } catch (error) {
     if (driver) driver.kill()
 
+    throw error
+  }
+}
+
+async function runScript(scriptPath, client, options) {
+  if (options.verbose) console.log(`Using --run script path ${options.run}`)
+
+  try {
+    require('babel-register') // allow es6 in custom script
+    let customScript = require(scriptPath)
+    await customScript(client, options)
+  } catch(error) {
+    console.error(`Could not load script your --run option ${scriptPath}`)
     throw error
   }
 }

@@ -37,6 +37,32 @@ const FIXTURES = [
 `
     }
   },
+  {
+    name: 'dogs',
+    body: () => {
+      return `
+  <ul class="breeds">
+    <li>Whippet</li>
+    <li>Staffordshire</li>
+    <li>Grey Hound</li>
+    <li>Boston Terrier</li>
+  </ul>
+`
+    }
+  },
+  {
+    name: 'cats',
+    body: () => {
+      return `
+  <ul class="breeds">
+    <li>Siamese</li>
+    <li>Ragdoll</li>
+    <li>Persian</li>
+    <li>Munchkin</li>
+  </ul>
+`
+    }
+  },
 ]
 
 export default  FIXTURES

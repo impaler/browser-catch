@@ -1,8 +1,6 @@
 import ERRORS from './errors'
 import FEATURES from './features'
 
-const ERROR = 'error'
-
 export function resolveFixtures (request) {
   let fixtures = [...ERRORS, ...FEATURES]
     .filter(error => {
@@ -22,18 +20,19 @@ export function fixtureResponse (matchingFixtures, response) {
   const fixtureContent = matchingFixtures.map(renderFixture).join('')
 
   response.write(`<html>
-    <head>
-<link rel="icon" href="favicon.ico">
-</head>
-    <body>
-        <h1>Fixtures displaying</h1>
-        
-        <ul>
-        ${matchingFixtures.map(fixture => `<li>${fixture.name}</li>`).join('\n')}
-        </ul>
+  <head>
+    <title>Fixtures</title>
+    <link rel="icon" href="favicon.ico">
+  </head>
+  <body>
+    <h1>Fixtures displaying</h1>
     
-        ${fixtureContent}
-    </body>
+    <ul>
+    ${matchingFixtures.map(fixture => `<li>${fixture.name}</li>`).join('\n')}
+    </ul>
+    
+    ${fixtureContent}
+  </body>
 </html>`)
 
   response.end()
@@ -52,13 +51,5 @@ function wrapScriptElement (content) {
         <script type="text/javascript">
             ${content}
         </script>
-`
-}
-
-function renderScript (errorContent) {
-  return `
-        error.script
-
-
 `
 }

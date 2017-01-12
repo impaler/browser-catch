@@ -32,11 +32,10 @@ function attachLogs (client, options) {
     .then(filterWarnings.bind(null, options))
 }
 
-export function gotoUrl (client, url) {
-  return client
-    .url(url)
-    .getUrl()
-    .then(validateUrl.bind(null, url))
+export async function gotoUrl (client, url) {
+  await client.url(url)
+  let currentUrl = await client.getUrl()
+  return validateUrl(url, currentUrl)
 }
 
 function validateUrl (expectedUrl, currentUrl) {
