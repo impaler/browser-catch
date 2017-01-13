@@ -58,6 +58,13 @@ Object {
 }
 `;
 
+exports[`phantomjs option run a custom async script with webdriver calls 1`] = `
+Object {
+  "driverType": "phantomjs",
+  "errors": Array [],
+}
+`;
+
 exports[`phantomjs option waitFor 1`] = `
 Object {
   "driverType": "phantomjs",
@@ -72,7 +79,7 @@ Object {
     Object {
       "level": "SEVERE",
       "message": "wow
-  (anonymous function) (http://localhost:9999/wait-for-thrws:23)",
+  (anonymous function) (http://localhost:9999/wait-for-thrws:24)",
     },
   ],
 }

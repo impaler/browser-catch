@@ -23,7 +23,7 @@ export default async function (client, options) {
   delete options.run
   assert.deepEqual(options, EXPECTED_OPTIONS)
   let result = await client.executeAsync(getDogs)
-  console.log(result)
+  if (options.verbose) console.log(result)
   assert.deepEqual(result.value, DOGS)
 }
 
