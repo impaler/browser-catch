@@ -26,6 +26,7 @@ program
   .option(`--wait-for-exist-reverse`, 'waits for the selector to NOT exist in the DOM')
   .option('--wait-for-exist-ms <ms>', 'the duration  in milliseconds for the wait-for-exist option to wait', parseIntDefault, 10000)
   .option('-p, --pause <ms>', 'in milliseconds, pause for errors to occur', parseIntDefault, 0)
+  .option('-r, --run <path>', 'run a js script with the context of the running webdriver client', null)
   .option('-w, --webdriver-host <url>', 'set the a specific webdriver host', '127.0.0.1')
   .option('-P, --webdriver-port <port>', 'set a custom selenium port', 4444)
   .option('-d, --driver <type>', 'the browser driver to run, chrome and phantomjs are known to work', 'phantomjs')
@@ -41,6 +42,7 @@ if (program.args.length > 0) {
     driverType: program.driver,
     json: !!(program.json),
     verbose: !!(program.verbose),
+    run: program.run,
     waitForExist: program.waitForExist || false,
     waitForExistMs: program.waitForExistMs,
     waitForExistReverse: !!(program.waitForExistReverse)
