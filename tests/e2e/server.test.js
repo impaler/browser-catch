@@ -2,10 +2,11 @@ import test from 'ava'
 
 require('isomorphic-fetch')
 require('babel-polyfill')
+require('babel-register')
 
-let fixtureServer = require('../../dist/lib/server/server')
+const fixtureServer = require('../../src/lib/server/server')
 
-test('the server will respond with a 404 for unknown content', async t => {
+test('fixture-server to respond with a 404 for unknown content', async t => {
   let serverSettings = await fixtureServer()
   let response = await fetch(`${serverSettings.url}/randomstuff`)
 
@@ -13,7 +14,7 @@ test('the server will respond with a 404 for unknown content', async t => {
   t.is(response.statusText, 'Not Found')
 })
 
-test('server pass query arguments, body and head through to htmlTemplate', async t => {
+test('fixture-server to pass query arguments, body and head through to htmlTemplate', async t => {
   let ROUTE_TEMPLATE_FIXTURE = {
     name: '/',
     head: `<link type="text/css" href="some-styles.css" />`,
