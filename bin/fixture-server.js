@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 require('babel-polyfill')
+require('babel-register')
 
-const server = require('../dist/lib/error-server/fixture-server')
+const fixtureServer = require('../src/lib/server/server')
 const port = process.env.PORT || 4555
 
-server(port)
+const ERRORS = require('../src/lib/server/fixtures/errors')
+fixtureServer({routes: ERRORS, port, verbose: true})

@@ -15,7 +15,26 @@ const DEFAULT_ROUTES = [
     html: '',
     header: {'Content-Type': 'image/x-icon'}
   },
+  {
+    name: '/',
+  },
 ]
+
+let DEFAULT_ROUTE = {
+  headTemplate: context => `<title>${context.name}</title>`,
+  htmlTemplate: context => `<html>
+  <head>
+    ${context.head}
+  </head>
+  <body>
+    ${context.body}
+  </body>
+</html>`
+}
+
+const scriptTemplate = context => `<script>
+    ${context.script}
+  </script>`
 
 const DEFAULT_OPTIONS = {
   verbose: false,
@@ -29,7 +48,7 @@ export default function (options) {
   function resolveServer (resolve, reject) {
     let app = express()
     let server = http.createServer(app).listen()
-    let port = server.address().port
+    let port = options.port || server.address().port
 
     server.close()
       .on('close', () => {
@@ -45,20 +64,27 @@ export default function (options) {
       addRoute(route, app, options)
     }
 
+    DEFAULT_ROUTES[1].body = `<ul>
+    ${listRoutes(app)}
+</ul>`
+
+    function listRoutes (app) {
+      return app._router.stack
+        .filter(item => item.name === 'bound dispatch')
+        .map(item => `<li><a href="${item.route.path}">${item.route.path}</a></li>`).join('\n')
+    }
+
     function onLogHost (port, error, address) {
       if (error) throw error
       let url = `http://${address}:${port}`
       if (options.verbose) console.log(`Example app listening at ${url}`)
 
       resolve(Object.assign({},
-        { address },
-        { url },
-        { app },
-        { add: addRoute.bind(null, app, options) }
+        {url, address, port, app},
+        {add: addRoute.bind(null, app, options)}
       ))
     }
   }
-
 }
 
 function addRoute (route, app, options) {
@@ -70,11 +96,13 @@ function addRoute (route, app, options) {
 }
 
 function resolveRoute (route, options, request, response) {
-  let query = request.query
-  let head = resolveContentSegment('head', route, {query})
-  let body = resolveContentSegment('body', route, {query})
+  let context = {name: route.name, query: request.query}
+  route = Object.assign({}, DEFAULT_ROUTE, route)
+
+  let head = resolveContentSegment('head', route, context)
+  let body = resolveContentSegment('body', route, context)
   let htmlContent = resolveContentSegment('html', route,
-      Object.assign({}, {head, body, query})
+      Object.assign({}, context, {head, body})
     ) || ''
   let header = Object.assign({}, DEFAULT_HEADER, route.header)
 
