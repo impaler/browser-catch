@@ -1,9 +1,9 @@
 const FIXTURES = [
   {
-    name: 'append-element-after',
-    body: (className, duration) => {
-      duration = duration || 5000
-      className = className || `appended-after-${duration}`
+    name: '/append-element-after',
+    bodyTemplate: context => {
+      let duration = context.query.duration || 5000
+      let className = context.query.className || `appended-after-${duration}`
       return `
   <script type="text/javascript">
   console.log('append')
@@ -18,11 +18,10 @@ const FIXTURES = [
     }
   },
   {
-
-    name: 'wait-for-thrws',
-    body: (className, duration) => {
-      duration = duration || 2000
-      className = className || `appended-after-${duration}`
+    name: '/wait-for-throws',
+    bodyTemplate: context => {
+      var duration = context.query.duration || 2000
+      var className = context.query.className || `appended-after-${duration}`
       return `
   <script type="text/javascript">
   console.log('append')
@@ -38,9 +37,8 @@ const FIXTURES = [
     }
   },
   {
-    name: 'dogs',
-    body: () => {
-      return `
+    name: '/dogs',
+    body: `
   <ul class="breeds">
     <li>Whippet</li>
     <li>Staffordshire</li>
@@ -48,12 +46,10 @@ const FIXTURES = [
     <li>Boston Terrier</li>
   </ul>
 `
-    }
   },
   {
-    name: 'cats',
-    body: () => {
-      return `
+    name: '/cats',
+    body: `
   <ul class="breeds">
     <li>Siamese</li>
     <li>Ragdoll</li>
@@ -61,7 +57,6 @@ const FIXTURES = [
     <li>Munchkin</li>
   </ul>
 `
-    }
   },
 ]
 

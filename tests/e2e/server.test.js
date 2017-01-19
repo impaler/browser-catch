@@ -4,7 +4,7 @@ require('isomorphic-fetch')
 require('babel-polyfill')
 require('babel-register')
 
-const fixtureServer = require('../../src/lib/server/server')
+const fixtureServer = require('../../src/lib/fixture-server/server')
 
 test('fixture-server to respond with a 404 for unknown content', async t => {
   let serverSettings = await fixtureServer()
@@ -16,7 +16,7 @@ test('fixture-server to respond with a 404 for unknown content', async t => {
 
 test('fixture-server to pass query arguments, body and head through to htmlTemplate', async t => {
   let ROUTE_TEMPLATE_FIXTURE = {
-    name: '/',
+    name: '/query',
     head: `<link type="text/css" href="some-styles.css" />`,
     body: `<h2>Override body</h2>`,
     htmlTemplate: context => `
@@ -32,7 +32,7 @@ test('fixture-server to pass query arguments, body and head through to htmlTempl
   }
 
   let serverSettings = await fixtureServer({routes: [ROUTE_TEMPLATE_FIXTURE]})
-  let response = await fetch(`${serverSettings.url}/?apples=green&banana=yellow&square=4&triangle=3`)
+  let response = await fetch(`${serverSettings.url}/query?apples=green&banana=yellow&square=4&triangle=3`)
   let responseText = await response.text()
 
   t.snapshot(responseText)

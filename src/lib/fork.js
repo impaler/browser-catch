@@ -15,7 +15,7 @@ export default async function (args) {
     args = [binPath, ...args]
 
     execFile('node', args, (error, stdout, stderr) => {
-      if (error || !stdout || stdout === '') {
+      if (!stdout || stdout === '') {
         reject({error, stdout, stderr})
       }
       resolve({error, stdout, stderr})
