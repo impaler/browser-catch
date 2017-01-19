@@ -1,0 +1,12 @@
+exports[`fixture-server to pass query arguments, body and head through to htmlTemplate 1`] = `
+"
+<html>
+  <head>
+    <title>/query</title>
+  </head>
+  <body>
+    <h1>{\"apples\":\"green\",\"banana\":\"yellow\",\"square\":\"4\",\"triangle\":\"3\"}</h1>
+    <h2>Override body</h2>
+  </body>
+</html>"
+`;
