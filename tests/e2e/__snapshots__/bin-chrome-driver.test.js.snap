@@ -5,7 +5,7 @@ Object {
 }
 `;
 
-exports[`ChromeDriver catch 0 errors to stdout json 1`] = `
+exports[`ChromeDriver catch 0 errors to stdout & json 1`] = `
 Object {
   "driverType": "chrome",
   "errors": Array [],
@@ -18,19 +18,19 @@ Object {
   "errors": Array [
     Object {
       "level": "SEVERE",
-      "message": "http://localhost:9999/error 6:20 \"A regular console.error\"",
+      "message": "http://127.0.1.1:9999/error 5:20 \"A regular console.error\"",
     },
   ],
 }
 `;
 
-exports[`ChromeDriver catch 1 error to stdout json 1`] = `
+exports[`ChromeDriver throws error when testing a url with a 404 1`] = `
 Object {
   "driverType": "chrome",
   "errors": Array [
     Object {
       "level": "SEVERE",
-      "message": "http://localhost:9999/error 6:20 \"A regular console.error\"",
+      "message": "http://127.0.1.1:9999/404 - Failed to load resource: the server responded with a status of 404 (Not Found)",
     },
   ],
 }
