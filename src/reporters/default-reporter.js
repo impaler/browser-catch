@@ -2,6 +2,12 @@ const figures = require('figures')
 const colors = require('ansicolors')
 
 export function report (result) {
+  Array.isArray(result) ?
+    result.forEach(reportSingle) :
+    reportSingle(result)
+}
+
+function reportSingle (result) {
   if (result.errors.length > 0) {
     console.log(colors.white(JSON.stringify(result, null, 4)))
 

@@ -1,6 +1,6 @@
 {
   "name": "browser-catch",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "An easier way to catch browser runtime console errors.",
   "license": "MIT",
   "bin": {
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "lint": "eslint src bin test",
-    "build": "babel src -d dist --source-maps",
+    "build": "babel src -d dist --source-maps --plugins transform-async-to-generator",
     "build:deploy": "rm -rf dist && babel src -d dist",
     "build:watch": "npm run build -- --watch",
     "test": "npm run build && npm run test:phantomjs",
@@ -29,20 +29,26 @@
   },
   "dependencies": {
     "ansicolors": "^0.3.2",
-    "babel-polyfill": "^6.20.0",
+    "babel-core": "^6.22.1",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "child-process-promise": "^2.2.0",
     "commander": "^2.9.0",
+    "execa": "^0.6.0",
     "express": "^4.14.0",
     "figures": "^2.0.0",
     "isomorphic-fetch": "^2.2.1",
     "phantomjs-prebuilt": "^2.1.13",
+    "promise-sequences": "^0.0.3",
+    "temp-write": "^3.0.0",
     "webdriverio": "^4.2.16"
   },
   "devDependencies": {
-    "ava": "avajs/ava#314f7a05bfa0f20b97192654885750237d133a18",
+    "ava": "^0.18.1",
     "babel-cli": "^6.18.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-regenerator": "^6.21.0",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-es2017": "^6.22.0",
+    "babel-register": "^6.22.0",
     "eslint": "^3.9.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.3.0",

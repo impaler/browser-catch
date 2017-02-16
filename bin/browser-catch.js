@@ -3,9 +3,7 @@
 const program = require('commander')
 const parseIntDefault = (val) => parseInt(val, 10) // current issue with commander
 
-require('babel-polyfill')
-
-const browserCatchUrl = require('../dist').browserCatchUrl
+const browserCatch = require('../dist').browserCatch
 const reporter = require('../dist/reporters/reporter')
 const packageMetaData = require('../package.json')
 
@@ -33,9 +31,71 @@ program
   .parse(process.argv)
 
 if (program.args.length > 0) {
-  const url = parseUrl(program.args[0])
+  const firstArgument = parseFirstArgument(program.args[0])
+  const options = getDefaultOptions(program)
 
-  const options = {
+  if (options.verbose) console.log(`
+Running browser-catch with command options:
+${JSON.stringify(options, null, 2)}
+`)
+
+  browserCatch(firstArgument, options)
+    .then(onDone.bind(null, options))
+    .catch(onError)
+} else {
+  program.outputHelp()
+  reporter.handledError('Error, you must at least include a url as an argument\n')
+  process.exit(1)
+}
+
+function onDone (options, result) {
+  reporter.report(result, options)
+
+  var errorCount
+
+  if (Array.isArray(result)) {
+    var errorResults = result
+      .map(item => item.errors)
+      .reduce((a, b) => a.concat(b))
+
+    errorCount = errorResults.length
+
+  } else {
+    errorCount = result.errors.length
+  }
+
+  process.exit(errorCount)
+}
+
+function onError (error) {
+  reporter.unhandledError(error)
+  process.exit(1)
+}
+
+function parseFirstArgument (argument) {
+  var result = {}
+
+  if (/\.js$|\.json$/.test(argument)) {
+    result = {
+      type: 'config',
+      path: argument
+    }
+  } else if (!/^http[s]?:\/\//.test(argument)) {
+    result = {
+      type: 'url',
+      url: 'http://' + argument
+    }
+  } else {
+    result = {
+      type: 'url',
+      url: argument
+    }
+  }
+  return result
+}
+
+function getDefaultOptions (program) {
+  return {
     pause: program.pause,
     webdriverHost: program.webdriverHost,
     webdriverPort: program.webdriverPort,
@@ -47,36 +107,4 @@ if (program.args.length > 0) {
     waitForExistMs: program.waitForExistMs,
     waitForExistReverse: !!(program.waitForExistReverse)
   }
-
-  if(options.verbose) console.log(`
-Running browser-catch with command options:
-${JSON.stringify(options, null, 2)}
-`)
-
-  browserCatchUrl(url, options)
-    .then(onDone.bind(null, options))
-    .catch(onError)
-} else {
-  program.outputHelp()
-  reporter.handledError('Error, you must at least include a url as an argument\n')
-  process.exit(1)
-}
-
-function parseUrl (url) {
-  if (url.search(/^http[s]?:\/\//) === -1) {
-    url = 'http://' + url
-  }
-  return url
-}
-
-function onDone (options, result) {
-  reporter.report(result, options)
-
-  const errorCode = result.errors.length > 0 ? 1 : 0
-  process.exit(errorCode)
-}
-
-function onError (error) {
-  reporter.unhandledError(error)
-  process.exit(1)
 }

@@ -13,7 +13,11 @@ export function stripDefaultReporterHack (stdout, port) {
   stdout = stdout.replace('\u001b[31m✖ Error 2 console errors\u001b[39m', '')
   try {
     let result = JSON.parse(stdout)
-    result = stripTimestamps(result, port)
+    if (Array.isArray(result)) {
+      result = result.map(item => stripTimestamps(item.result, port))
+    } else {
+      result = stripTimestamps(result, port)
+    }
     return result
   } catch (error) {
     throw new Error(error)

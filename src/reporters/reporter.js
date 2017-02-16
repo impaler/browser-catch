@@ -10,8 +10,8 @@ export function report (result, options) {
 }
 
 export function unhandledError (error) {
-  console.error('unhandledError')
-  throw new Error(error)
+  console.error(colors.red('\nunhandledError:'))
+  console.error(colors.red(error))
 }
 
 export function handledError (message) {
