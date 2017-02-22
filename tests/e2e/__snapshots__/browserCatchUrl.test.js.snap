@@ -1,0 +1,186 @@
+{
+  "catching 10 errors from a url": {
+    "driverType": "phantomjs",
+    "errors": [
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=10:6)"
+      }
+    ],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": false,
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  },
+  "catching 1 error from a url": {
+    "driverType": "phantomjs",
+    "errors": [
+      {
+        "level": "SEVERE",
+        "message": "A regular console.error\n  error (:0)"
+      }
+    ],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": false,
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  },
+  "catching no errors from a valid url": {
+    "driverType": "phantomjs",
+    "errors": [],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": false,
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  },
+  "waitForExist option": {
+    "driverType": "phantomjs",
+    "errors": [
+      {
+        "level": "SEVERE",
+        "message": "error before the element is appended\n  global code (http://127.0.1.1:9999/append-element-after:8)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "Error: thrown error after the element is appended\n  (anonymous function) (http://127.0.1.1:9999/append-element-after:14)"
+      }
+    ],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": ".appended-after-5000",
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  },
+  "waitForExist option waits for the element to exist": {
+    "driverType": "phantomjs",
+    "errors": [
+      {
+        "level": "SEVERE",
+        "message": "error before the element is appended\n  global code (http://127.0.1.1:9999/append-element-after:8)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "thrown error after the element is appended\n  (anonymous function) (http://127.0.1.1:9999/append-element-after:14)"
+      }
+    ],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": ".appended-after-5000",
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  },
+  "run option on a custom async script": {
+    "driverType": "phantomjs",
+    "errors": [],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": false,
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  },
+  "waitForExist option waits for an element to exist ": {
+    "driverType": "phantomjs",
+    "errors": [
+      {
+        "level": "SEVERE",
+        "message": "error before the element is appended\n  global code (http://127.0.1.1:9999/append-element-after:8)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "thrown error after the element is appended\n  (anonymous function) (http://127.0.1.1:9999/append-element-after:14)"
+      }
+    ],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": ".appended-after-5000",
+      "waitForExistReverse": false,
+      "waitForExistMs": 10000,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
+  }
+}

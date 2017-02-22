@@ -1,6 +1,6 @@
 {
   "name": "browser-catch",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "An easier way to catch browser runtime console errors.",
   "license": "MIT",
   "bin": {
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "ansicolors": "^0.3.2",
+    "ava": "avajs/ava#34c38175ca337f68f29acd750e480bf10ed1a391",
     "babel-core": "^6.22.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "child-process-promise": "^2.2.0",
@@ -43,10 +44,11 @@
     "webdriverio": "^4.2.16"
   },
   "devDependencies": {
-    "ava": "^0.18.1",
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
     "babel-preset-es2017": "^6.22.0",
     "babel-register": "^6.22.0",
     "eslint": "^3.9.0",
@@ -56,6 +58,7 @@
     "http-server": "^0.9.0"
   },
   "ava": {
+    "require": "babel-register",
     "files": [
       "tests/e2e/*.test.js",
       "!**/*js.snap"

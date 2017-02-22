@@ -6,12 +6,13 @@ const FIXTURES = [
       let className = context.query.className || `appended-after-${duration}`
       return `
   <script type="text/javascript">
-  console.log('append')
+  console.error('error before the element is appended')
     setTimeout(function() {
       var paragraphElement = document.createElement("p");
       paragraphElement.className = "${className}";
       paragraphElement.innerText = "Boo!!! I have appeared after ${duration}ms";
-      document.body.appendChild(paragraphElement); 
+      document.body.appendChild(paragraphElement);
+      console.error('thrown error after the element is appended')
     }, ${duration})
   </script>
 `
@@ -20,7 +21,7 @@ const FIXTURES = [
   {
     name: '/wait-for-throws',
     bodyTemplate: context => {
-      var duration = context.query.duration || 2000
+      var duration = context.query.duration || 5000
       var className = context.query.className || `appended-after-${duration}`
       return `
   <script type="text/javascript">

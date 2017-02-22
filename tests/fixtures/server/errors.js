@@ -4,7 +4,10 @@ const FIXTURES = [
     bodyTemplate: context => {
       let query = context.query || {}
       let message = query.message || `A regular console.error`
-      return `<script>console.error("${message}")</script>`
+      let count = query.count || 1
+      let logError = `console.error("${message}")`
+      let errors = Array.apply(null, Array(Number(count))).map(()=>logError)
+      return `<script>${errors}</script>`
     }
   },
   {

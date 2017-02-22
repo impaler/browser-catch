@@ -32,8 +32,10 @@ const debug = typeof v8debug === 'object'
 export async function forkBin (args, debugPort) {
   debugPort = debugPort || 40894
   let execArgv = debug ? ['--debug-brk', `--debug=${debugPort}`] : []
+  args = args.split(' ')
+  console.log(args)
 
-  const forkPromise = fork(binPath, args, {
+  let forkPromise = fork(binPath, args, {
     execArgv
   })
 
@@ -55,5 +57,7 @@ export async function forkBin (args, debugPort) {
     console.log('PARENT got data:', m)
   })
 
-  return forkPromise
+  let result = await forkPromise
+
+  return result
 }

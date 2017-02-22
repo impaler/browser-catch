@@ -4,7 +4,8 @@ export { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 const seriesSettled = require('promise-sequences').seriesSettled
 const fs = require('fs')
 const babelCore = require('babel-core')
-const babelrc = {
+
+const BABEL_CONFIG = {
   babelrc: false,
   presets: [
     "es2017"
@@ -13,6 +14,19 @@ const babelrc = {
     "transform-es2015-modules-commonjs",
     "transform-es2015-spread"
   ]
+}
+
+export const DEFAULT_OPTIONS = {
+  json: null,
+  verbose: false,
+  waitForExist: false,
+  waitForExistReverse: false,
+  waitForExistMs: 10000,
+  pause: 0,
+  run: null,
+  webdriverHost: '127.0.0.1',
+  webdriverPort: 4444,
+  driverType: 'phantomjs',
 }
 
 export const TYPE = {
@@ -25,10 +39,14 @@ export async function browserCatch (task, options) {
     return browserCatchUrl(task.url, options)
   } else if (task.type === TYPE.config) {
     return browserCatchConfig(task.path, options)
+  } else {
+    throw new Error(`browserCatch unknown task TYPE, please specify a type such as ${Object.keys(TYPE)}`)
   }
 }
 
-async function browserCatchConfig (configPath, options) {
+export async function browserCatchConfig (configPath, options) {
+  options = assignDefaultOptions(options)
+
   let config = await readFile(configPath)
   let results
 
@@ -38,11 +56,12 @@ async function browserCatchConfig (configPath, options) {
     results = results.map(item => item.result)
     return results
   } else {
-    throw new Error('browserCatchConfig')
+    throw new Error('browserCatchConfig you need to provide a config["urls"] array in your config object')
   }
 }
 
 export async function browserCatchUrl (url, options) {
+  options = assignDefaultOptions(options)
   let driver
 
   try {
@@ -58,7 +77,8 @@ export async function browserCatchUrl (url, options) {
     await gotoUrl(client, url)
 
     if (options.run) {
-      await runScript(options.run, client, options)
+      let script = await loadScript(options.run, client, options)
+      await runScript(script, client, options)
     }
 
     // http://webdriver.io/api/utility/waitForExist.html
@@ -90,7 +110,8 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
       end,
       url,
       driverType: options.driverType,
-      errors
+      errors,
+      options,
     }
   } catch (error) {
     if (driver) driver.kill()
@@ -99,16 +120,33 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
   }
 }
 
-async function runScript (scriptPath, client, options) {
-  if (options.verbose) console.log(`Using --run script path ${options.run}`)
+export function assignDefaultOptions (options) {
+  let assigned = Object.assign({}, DEFAULT_OPTIONS, options)
+  return assigned
+}
+
+async function runScript (customScript, client, options) {
+  try {
+    await customScript(client, options)
+  } catch (error) {
+    console.error(`custom script has thrown an error`, error)
+    throw error
+  }
+}
+
+async function loadScript (scriptPath, client, options) {
+  if (options.verbose) console.log(`Loading run script from path ${options.run}`)
+
+  let customScript
 
   try {
-    let customScript = await readFileBabel(scriptPath)
-    await customScript(client, options)
+    customScript = await readFileBabel(scriptPath)
   } catch (error) {
     console.error(`Could not load script your --run option ${scriptPath}`)
     throw error
   }
+
+  return customScript
 }
 
 async function readFile (filePath) {
@@ -127,9 +165,36 @@ async function readFileBabel (filePath) {
 
     function onReadFile (error, fileContent) {
       if (error) reject(error)
-      let fileCode = babelCore.transform(fileContent, babelrc)
-      let fileContext = eval(fileCode.code)
-      resolve(fileContext)
+
+      let fileCode = babelCore.transform(fileContent, BABEL_CONFIG)
+      let file = fileCode.code
+      let fileContext = requireFromString(file)
+      resolve(fileContext.default)
     }
   }
+}
+
+async function requireToString (npm) {
+  return new Promise(onRequireToString)
+
+  function onRequireToString (resolve, reject) {
+    const promisePolyfillPath = require.resolve(npm)
+    fs.readFile(promisePolyfillPath, 'utf8', onReadFile)
+
+    function onReadFile (error, fileContent) {
+      if (error) reject(error)
+
+      resolve(fileContent)
+    }
+  }
+}
+
+function requireFromString (src, filename) {
+  filename = filename || '';
+
+  var Module = module.constructor
+  console.error(filename)
+  var m = new Module(filename, module.parent)
+  m._compile(src, filename)
+  return m.exports;
 }
