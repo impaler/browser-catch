@@ -35,37 +35,16 @@ test('catching no errors from a valid url', async t => {
   t.snapshot(snapshot)
 })
 
-test('waitForExist option waits for an element to exist while catching errors', async t => {
+test('waitForExist option waits for an element to exist ', async t => {
   const serverSettings = await fixtureServer()
-  const waitDuration = 5000
   const options = {
-    waitForExist: `.appended-after-${waitDuration}`
+    waitForExist: '.appended-after-5000'
   }
   const start = new Date()
   const result = await browserCatchUrl(`${serverSettings.url}/append-element-after`, options)
   const duration = new Date() - start
 
-  t.true(duration > waitDuration)
-  t.is(result.driverType, DRIVER_TYPE)
-  t.is(result.errors.length, 2)
-
-  const snapshot = stripResult(result, serverSettings.port)
-  t.snapshot(snapshot)
-})
-
-
-test('waitForExist & waitForExistMs options to wait for a custom time for an element to exist while catching errors', async t => {
-  const serverSettings = await fixtureServer()
-  const waitDuration = 1000
-  const options = {
-    waitForExist: `.appended-after-${waitDuration}`,
-    waitForExistMs: waitDuration + 500
-  }
-  const start = new Date()
-  const result = await browserCatchUrl(`${serverSettings.url}/append-element-after?duration=${waitDuration}`, options)
-  const duration = new Date() - start
-
-  t.true(duration > waitDuration)
+  t.true(duration > 5000)
   t.is(result.driverType, DRIVER_TYPE)
   t.is(result.errors.length, 2)
 
