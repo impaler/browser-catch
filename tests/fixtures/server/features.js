@@ -46,6 +46,9 @@ const FIXTURES = [
     <li>Grey Hound</li>
     <li>Boston Terrier</li>
   </ul>
+  <script type="text/javascript">
+    console.error("dogs error")
+  </script>
 `
   },
   {

@@ -27,6 +27,7 @@ export const DEFAULT_OPTIONS = {
   webdriverHost: '127.0.0.1',
   webdriverPort: 4444,
   driverType: 'phantomjs',
+  concurrent: 1
 }
 
 export const TYPE = {
@@ -52,7 +53,7 @@ export async function browserCatchConfig (configPath, options) {
 
   if (config && config.urls) {
     let tasks = config.urls.map(url => () => browserCatchUrl(url, options))
-    results = await seriesSettled(tasks, 1)
+    results = await seriesSettled(tasks, options.concurrent)
     results = results.map(item => item.result)
     return results
   } else {
