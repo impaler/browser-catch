@@ -182,5 +182,30 @@
       "webdriverPort": 4444,
       "driverType": "phantomjs"
     }
+  },
+  "waitForExist option with waits for an element to exist ": {
+    "driverType": "phantomjs",
+    "errors": [
+      {
+        "level": "SEVERE",
+        "message": "error before the element is appended\n  global code (http://127.0.1.1:9999/append-element-after?duration=1000:8)"
+      },
+      {
+        "level": "SEVERE",
+        "message": "thrown error after the element is appended\n  (anonymous function) (http://127.0.1.1:9999/append-element-after?duration=1000:14)"
+      }
+    ],
+    "options": {
+      "json": null,
+      "verbose": false,
+      "waitForExist": ".appended-after-1000",
+      "waitForExistReverse": false,
+      "waitForExistMs": 1500,
+      "pause": 0,
+      "run": null,
+      "webdriverHost": "127.0.0.1",
+      "webdriverPort": 4444,
+      "driverType": "phantomjs"
+    }
   }
 }
