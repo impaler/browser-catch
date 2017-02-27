@@ -62,19 +62,7 @@ function onDone (options, result) {
 
   reporter.report(result, options)
 
-  var errorCount
-
-  if (Array.isArray(result)) {
-    var errorResults = result
-      .map(item => item.errors)
-      .reduce((a, b) => a.concat(b))
-
-    errorCount = errorResults.length
-
-  } else {
-    errorCount = result.errors.length
-  }
-
+  const errorCount = reporter.countErrors(result)
   process.exit(errorCount)
 }
 

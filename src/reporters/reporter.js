@@ -18,3 +18,20 @@ export function unhandledError (error) {
 export function handledError (message) {
   console.error(colors.red(message))
 }
+
+export function countErrors(result) {
+  var errorCount
+
+  if (Array.isArray(result)) {
+    var errorResults = result
+      .map(item => item.errors)
+      .reduce((a, b) => a.concat(b))
+
+    errorCount = errorResults.length
+
+  } else {
+    errorCount = result.errors.length
+  }
+
+  return errorCount
+}

@@ -1,15 +1,16 @@
 const assert = require('assert')
 
 const EXPECTED_OPTIONS = {
+  json: null,
+  verbose: false,
+  waitForExist: false,
+  waitForExistReverse: false,
+  waitForExistMs: 10000,
   pause: 0,
   webdriverHost: '127.0.0.1',
   webdriverPort: 4444,
   driverType: 'phantomjs',
-  json: null,
-  verbose: false,
-  waitForExist: false,
-  waitForExistMs: 10000,
-  waitForExistReverse: false
+  concurrent: 1
 }
 
 const DOGS = [
@@ -27,6 +28,7 @@ export default async function (client, options) {
 }
 
 function getDogs(done) {
+  // runs in the browser
   var dogs = document.querySelectorAll('.breeds li')
   var dogElements = [].slice.call(dogs)
   var dogBreeds = dogElements.map(function(element) {return element.innerText})

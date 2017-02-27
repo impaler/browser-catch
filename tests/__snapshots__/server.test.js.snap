@@ -1,0 +1,12 @@
+{
+  "passing query arguments to the context of the htmlTemplate": "\n<html>\n  <head>\n    <title>/query</title>\n  </head>\n  <body>\n    <h1>{\"apples\":\"green\",\"banana\":\"yellow\",\"square\":\"4\",\"triangle\":\"3\"}</h1>\n    <h2>Override body</h2>\n  </body>\n</html>",
+  "passing multiple routes to the server": {
+    "firstRoute": "<html>\n  <head>\n    <title>/cats</title>\n  </head>\n  <body>\n    \n  <ul class=\"breeds\">\n    <li>Siamese</li>\n    <li>Ragdoll</li>\n    <li>Persian</li>\n    <li>Munchkin</li>\n  </ul>\n\n  </body>\n</html>",
+    "secondRoute": "<html>\n  <head>\n    <title>/dogs</title>\n  </head>\n  <body>\n    \n  <ul class=\"breeds\">\n    <li>Whippet</li>\n    <li>Staffordshire</li>\n    <li>Grey Hound</li>\n    <li>Boston Terrier</li>\n  </ul>\n  <script type=\"text/javascript\">\n    console.error(\"dogs error\")\n  </script>\n\n  </body>\n</html>",
+    "thirdRoute": "<html>\n  <head>\n    <title>/error</title>\n  </head>\n  <body>\n    <script>console.error(\"A regular console.error\")</script>\n  </body>\n</html>",
+    "noRouteText": {
+      "status": 404,
+      "statusText": "Not Found"
+    }
+  }
+}
