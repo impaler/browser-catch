@@ -29,7 +29,7 @@ program
   .option('-r, --run <path>', 'run a js script with the context of the running webdriver client', DEFAULT_OPTIONS.run)
   .option('-w, --webdriver-host <url>', 'set the a specific webdriver host', DEFAULT_OPTIONS.webdriverHost)
   .option('-P, --webdriver-port <port>', 'set a custom selenium port', DEFAULT_OPTIONS.webdriverPort)
-  .option('-d, --driver <type>', 'the browser driver to run, chrome and phantomjs are known to work', DEFAULT_OPTIONS.driver)
+  .option('-d, --driver-type <type>', 'the browser driver to run, chrome and phantomjs are known to work', DEFAULT_OPTIONS.driverType)
   .parse(process.argv)
 
 if (program.args.length > 0) {
@@ -51,7 +51,7 @@ ${JSON.stringify(options, null, 2)}
 }
 
 function onDone (options, result) {
-  if(Array.isArray(result)) {
+  if(Array.isArray(result)) { //errors??
     result = result.map(item => {
       delete item.options
       return item

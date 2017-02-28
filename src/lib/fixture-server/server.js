@@ -59,6 +59,12 @@ export default function (options) {
       })
       .on('error', error => reject(error))
 
+    app.get('*', function(req, res, next) {
+      var err = new Error('unknown route')
+      res.status = 404
+      next(res)
+    })
+
     let routes = [...DEFAULT_ROUTES, ...options.routes]
     for (let route of routes) {
       addRoute(route, app, options)

@@ -54,7 +54,15 @@ export async function browserCatchConfig (configPath, options) {
   if (config && config.urls) {
     let tasks = config.urls.map(url => () => browserCatchUrl(url, options))
     results = await seriesSettled(tasks, options.concurrent)
-    results = results.map(item => item.result)
+
+    let errors = results.filter(result => result.state !== 'resolved')
+    if (errors.length > 0) {
+      if (options.verbose) {
+        errors.forEach(error => console.error(error))
+      }
+      throw new Error(`There were ${errors.length} errors in the task`)
+    }
+
     return results
   } else {
     throw new Error('browserCatchConfig you need to provide a config["urls"] array in your config object')
@@ -123,6 +131,7 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
 
 export function assignDefaultOptions (options) {
   let assigned = Object.assign({}, DEFAULT_OPTIONS, options)
+  if (assigned.verbose) console.log(assigned)
   return assigned
 }
 
@@ -130,7 +139,7 @@ async function runScript (customScript, client, options) {
   try {
     await customScript(client, options)
   } catch (error) {
-    console.error(`custom script has thrown an error`, error)
+    if (options.verbose) console.error(`custom script has thrown an error`, error)
     throw error
   }
 }
@@ -194,7 +203,7 @@ function requireFromString (src, filename) {
   filename = filename || '';
 
   var Module = module.constructor
-  console.error(filename)
+  // console.error(filename)
   var m = new Module(filename, module.parent)
   m._compile(src, filename)
   return m.exports;

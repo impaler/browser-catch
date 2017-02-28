@@ -24,11 +24,18 @@ export function stripDefaultReporterHack (stdout, options) {
 
 export function stripResult (result, port) {
   if (Array.isArray(result)) {
-    result = result.map(item => stripTimestamps(item, port))
+    result = stripResults(result, port)
   } else {
     result = stripTimestamps(result, port)
   }
   return result
+}
+
+function stripResults (results, port) {
+  let rejected = results.filter(result => result.state === 'rejected')
+  let resolved = results.filter(result => result.state === 'resolved')
+
+  resolved = resolved.map(item => stripTimestamps(item, port))
 }
 
 function stripTimestamps (stdout, port) {

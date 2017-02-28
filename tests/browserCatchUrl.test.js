@@ -15,6 +15,11 @@ test('catching 1 error from a url', async t => {
   t.snapshot(snapshot)
 })
 
+test('throwing on an invalid url', async t => {
+  const error = await t.throws(browserCatchUrl(`http://wow/invalid`))
+  t.snapshot(error.message)
+})
+
 test('catching 10 errors from a url', async t => {
   let serverSettings = await fixtureServer()
   let result = await browserCatchUrl(`${serverSettings.url}/error?count=10`)
