@@ -1,14 +1,16 @@
 import test from 'ava'
 const path = require('path')
-const fixtureServer = require('./fixtures/server/server').default
-const browserCatchConfig = require('../src/index').browserCatchConfig
-const { stripResult } = require('./helpers/result')
-const { writeTempJSFile, writeTempJSONFile } = require('./helpers/io')
+
+import fixtureServer from './fixtures/server/server'
+import { browserCatchConfig } from '../src/index'
+import { stripResult } from './helpers/result'
+import { writeTempJSFile, writeTempJSONFile } from './helpers/io'
+
 const DRIVER_TYPE = 'phantomjs'
 
 test('running a config in es6 with an array of urls', async t => {
   const serverSettings = await fixtureServer()
-  let configPath = await writeTempJSFile({
+  const configPath = await writeTempJSFile({
     urls: [
       `${serverSettings.url}/error`,
       `${serverSettings.url}/throw`,
@@ -33,7 +35,7 @@ test('running a config in es6 with an array of urls', async t => {
 
 test('throwing if any of the urls fail', async t => {
   const serverSettings = await fixtureServer()
-  let configPath = await writeTempJSFile({
+  const configPath = await writeTempJSFile({
     urls: [
       `${serverSettings.url}/error`,
       `http://somerandom/invalid`,
@@ -50,7 +52,7 @@ test('throwing if any of the urls fail', async t => {
 
 test('running a config in json with an array of urls', async t => {
   const serverSettings = await fixtureServer()
-  let configPath = await writeTempJSONFile({
+  const configPath = await writeTempJSONFile({
     urls: [
       `${serverSettings.url}/error`,
       `${serverSettings.url}/throw`,

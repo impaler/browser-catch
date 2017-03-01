@@ -5,7 +5,7 @@ const parseIntDefault = (val) => parseInt(val, 10) // current issue with command
 
 const browserCatch = require('../dist').browserCatch
 const assignDefaultOptions = require('../dist').assignDefaultOptions
-const DEFAULT_OPTIONS = require('../dist').DEFAULT_OPTIONS
+const DEFAULT_OPTIONS = require('../dist/constants').DEFAULT_OPTIONS
 const reporter = require('../dist/reporters/reporter')
 const packageMetaData = require('../package.json')
 

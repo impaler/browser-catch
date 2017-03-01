@@ -1,14 +1,16 @@
 import test from 'ava'
 const path = require('path')
-const fixtureServer = require('./fixtures/server/server').default
-const browserCatchUrl = require('../src/index').browserCatchUrl
-const { stripResult } = require('./helpers/result')
+
+import fixtureServer from './fixtures/server/server'
+import { browserCatchUrl } from '../src/index'
+import { stripResult } from './helpers/result'
+
 const DRIVER_TYPE = 'phantomjs'
 
 test('catching 1 error from a url', async t => {
-  let serverSettings = await fixtureServer()
-  let result = await browserCatchUrl(`${serverSettings.url}/error`)
-  let snapshot = stripResult(result, serverSettings.port)
+  const serverSettings = await fixtureServer()
+  const result = await browserCatchUrl(`${serverSettings.url}/error`)
+  const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
   t.is(result.errors.length, 1)
@@ -21,9 +23,9 @@ test('throwing on an invalid url', async t => {
 })
 
 test('catching 10 errors from a url', async t => {
-  let serverSettings = await fixtureServer()
-  let result = await browserCatchUrl(`${serverSettings.url}/error?count=10`)
-  let snapshot = stripResult(result, serverSettings.port)
+  const serverSettings = await fixtureServer()
+  const result = await browserCatchUrl(`${serverSettings.url}/error?count=10`)
+  const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
   t.is(result.errors.length, 10)

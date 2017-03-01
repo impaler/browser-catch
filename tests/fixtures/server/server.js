@@ -1,4 +1,4 @@
-import fixtureServer from '../../../src/lib/fixture-server/server'
+import fixtureServer from '../../../src/lib/fixture-server'
 import ERRORS from './errors'
 import FEATURES from './features'
 

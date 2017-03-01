@@ -1,11 +1,11 @@
 const fs = require('fs')
-const babelCore = require('babel-core')
 const { seriesSettled } = require('promise-sequences')
 
 import loadDriver from './drivers/driver'
+import { CONFIG_TYPE, DEFAULT_OPTIONS } from './constants'
+import { readFile, readFileBabel } from './lib/script-loader'
 import { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 export { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
-import { CONFIG_TYPE, DEFAULT_OPTIONS, BABEL_CONFIG } from './constants'
 
 export async function browserCatch (task, options) {
   if (task.type === CONFIG_TYPE.url) {
@@ -58,7 +58,7 @@ export async function browserCatchUrl (url, options) {
     await gotoUrl(client, url)
 
     if (options.run) {
-      let script = await loadScript(options.run, client, options)
+      let script = await loadScript(options.run, options)
       await runScript(script, client, options)
     }
 
@@ -107,16 +107,16 @@ export function assignDefaultOptions (options) {
   return assigned
 }
 
-async function runScript (customScript, client, options) {
+async function runScript (script, client, options) {
   try {
-    await customScript(client, options)
+    await script(client, options)
   } catch (error) {
     if (options.verbose) console.error(`custom script has thrown an error`, error)
     throw error
   }
 }
 
-async function loadScript (scriptPath, client, options) {
+async function loadScript (scriptPath, options) {
   if (options.verbose) console.log(`Loading run script from path ${options.run}`)
 
   let customScript
@@ -129,52 +129,4 @@ async function loadScript (scriptPath, client, options) {
   }
 
   return customScript
-}
-
-async function readFile (filePath) {
-  if (/.js$/.test(filePath)) {
-    return readFileBabel(filePath)
-  } else if (/.json$/.test(filePath)) {
-    return require(filePath)
-  }
-}
-
-async function readFileBabel (filePath) {
-  return new Promise(onReadFileBabel)
-
-  function onReadFileBabel (resolve, reject) {
-    fs.readFile(filePath, 'utf8', onReadFile)
-
-    function onReadFile (error, fileContent) {
-      if (error) reject(error)
-
-      let fileCode = babelCore.transform(fileContent, BABEL_CONFIG)
-      let file = fileCode.code
-      let fileContext = requireFromString(file)
-      resolve(fileContext.default)
-    }
-  }
-}
-
-async function requireToString (npm) {
-  return new Promise(onRequireToString)
-
-  function onRequireToString (resolve, reject) {
-    const promisePolyfillPath = require.resolve(npm)
-    fs.readFile(promisePolyfillPath, 'utf8', onReadFile)
-
-    function onReadFile (error, fileContent) {
-      if (error) reject(error)
-
-      resolve(fileContent)
-    }
-  }
-}
-
-function requireFromString (src, filename) {
-  filename = filename || ''
-  let Module = module.constructor
-  let m = new Module(filename, module.parent)
-  m._compile(src, filename)
-  return m.exports
 }

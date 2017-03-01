@@ -1,7 +1,8 @@
 import test from 'ava'
 const fetch = require('node-fetch')
-const fixtureServer = require('../src/lib/fixture-server/server').default
-const {HTML_TEMPLATE_FIXTURE} = require('./fixtures/server/server-tests')
+
+import fixtureServer from '../src/lib/fixture-server'
+import { HTML_TEMPLATE_FIXTURE } from './fixtures/server/server-tests'
 import ERRORS from './fixtures/server/errors'
 import FEATURES from './fixtures/server/features'
 

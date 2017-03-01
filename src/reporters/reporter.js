@@ -12,7 +12,6 @@ export function report (result, options) {
 }
 
 export function unhandledError (error) {
-  console.error(colors.red('\nunhandledError:'))
   console.error(colors.red(error))
 }
 
