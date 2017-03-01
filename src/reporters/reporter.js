@@ -1,5 +1,6 @@
-const defaultReporter = require('./default-reporter')
 const colors = require('ansicolors')
+
+const defaultReporter = require('./default-reporter')
 
 export function report (result, options) {
 

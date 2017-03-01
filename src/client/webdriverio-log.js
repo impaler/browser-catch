@@ -1,5 +1,6 @@
-import { BROWSER_LOG_LEVELS, DRIVER_TYPES } from '../constants'
 const webdriverio = require('webdriverio')
+
+import { BROWSER_LOG_LEVELS, DRIVER_TYPES } from '../constants'
 
 // http://webdriver.io/api/protocol/logTypes.html
 const WEBDRIVER_BROWSER_LOG = 'browser'

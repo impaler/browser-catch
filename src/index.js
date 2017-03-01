@@ -1,47 +1,19 @@
+const fs = require('fs')
+const babelCore = require('babel-core')
+const { seriesSettled } = require('promise-sequences')
+
 import loadDriver from './drivers/driver'
 import { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 export { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
-const seriesSettled = require('promise-sequences').seriesSettled
-const fs = require('fs')
-const babelCore = require('babel-core')
-
-const BABEL_CONFIG = {
-  babelrc: false,
-  presets: [
-    "es2017"
-  ],
-  plugins: [
-    "transform-es2015-modules-commonjs",
-    "transform-es2015-spread"
-  ]
-}
-
-export const DEFAULT_OPTIONS = {
-  json: null,
-  verbose: false,
-  waitForExist: false,
-  waitForExistReverse: false,
-  waitForExistMs: 10000,
-  pause: 0,
-  run: null,
-  webdriverHost: '127.0.0.1',
-  webdriverPort: 4444,
-  driverType: 'phantomjs',
-  concurrent: 1
-}
-
-export const TYPE = {
-  url: 'url',
-  config: 'config',
-}
+import { CONFIG_TYPE, DEFAULT_OPTIONS, BABEL_CONFIG } from './constants'
 
 export async function browserCatch (task, options) {
-  if (task.type === TYPE.url) {
+  if (task.type === CONFIG_TYPE.url) {
     return browserCatchUrl(task.url, options)
-  } else if (task.type === TYPE.config) {
+  } else if (task.type === CONFIG_TYPE.config) {
     return browserCatchConfig(task.path, options)
   } else {
-    throw new Error(`browserCatch unknown task TYPE, please specify a type such as ${Object.keys(TYPE)}`)
+    throw new Error(`browserCatch unknown task TYPE, please specify a type such as ${Object.keys(CONFIG_TYPE)}`)
   }
 }
 
