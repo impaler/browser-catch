@@ -31,7 +31,7 @@ test('running a config in es6 with an array of urls', async t => {
   t.snapshot(snapshot)
 })
 
-test.only('running a config in es6 with an array of urls rejects ', async t => {
+test('throwing if any of the urls fail', async t => {
   const serverSettings = await fixtureServer()
   let configPath = await writeTempJSFile({
     urls: [
@@ -43,16 +43,9 @@ test.only('running a config in es6 with an array of urls rejects ', async t => {
     ]
   }, 'urls-config-test.js')
 
-  // console.log = log
-  // function log () {
-  //   let logLineDetails = ((new Error().stack).split("at ")[3]).trim();
-  //   console.log('DEBUG', new Date().toUTCString(), logLineDetails, JSON.stringify(arguments[0]));
-  // }
-  //
-  // console.log('wow')
-
   const error = await t.throws(browserCatchConfig(configPath))
-  t.is(error.message, 'There were 3 errors in the task')
+  const snapshot = stripResult(error, serverSettings.port)
+  t.snapshot(snapshot)
 })
 
 test('running a config in json with an array of urls', async t => {

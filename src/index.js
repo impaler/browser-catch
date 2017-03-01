@@ -58,11 +58,11 @@ export async function browserCatchConfig (configPath, options) {
     let errors = results.filter(result => result.state !== 'resolved')
     if (errors.length > 0) {
       if (options.verbose) {
+        console.log(`There were ${errors.length} errors in the task`)
         errors.forEach(error => console.error(error))
       }
-      throw new Error(`There were ${errors.length} errors in the task`)
+      throw errors
     }
-
     return results
   } else {
     throw new Error('browserCatchConfig you need to provide a config["urls"] array in your config object')
@@ -200,11 +200,9 @@ async function requireToString (npm) {
 }
 
 function requireFromString (src, filename) {
-  filename = filename || '';
-
-  var Module = module.constructor
-  // console.error(filename)
-  var m = new Module(filename, module.parent)
+  filename = filename || ''
+  let Module = module.constructor
+  let m = new Module(filename, module.parent)
   m._compile(src, filename)
-  return m.exports;
+  return m.exports
 }

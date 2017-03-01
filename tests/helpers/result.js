@@ -31,23 +31,39 @@ export function stripResult (result, port) {
   return result
 }
 
-function stripResults (results, port) {
-  let rejected = results.filter(result => result.state === 'rejected')
-  let resolved = results.filter(result => result.state === 'resolved')
+const filterResult = (results, state) => results
+  .filter(result => result.state === state)
+  .map(item => item.result)
 
-  resolved = resolved.map(item => stripTimestamps(item, port))
+const stripTimestampResults = (timestamps, port) => timestamps.map(item => stripTimestamps(item, port))
+
+function stripResults (results, port) {
+  let rejected = filterResult(results, 'rejected')
+  let resolved = filterResult(results, 'resolved')
+
+  rejected = stripTimestampResults(rejected, port)
+  resolved = stripTimestampResults(resolved, port)
+
+  return {
+    rejected,
+    resolved,
+  }
 }
 
-function stripTimestamps (stdout, port) {
-  delete stdout.end
-  delete stdout.start
-  delete stdout.url
+function stripTimestamps (result, port) {
+  delete result.end
+  delete result.start
+  delete result.url
 
-  stdout.errors = stdout.errors.map(error => {
-    delete error.timestamp
-    error.message = error.message.replace(port, '9999')
-    return error
-  })
+  if (result.errors) {
+    result.errors = result.errors.map(error => {
+      delete error.timestamp
+      error.message = error.message.replace(port, '9999')
+      return error
+    })
+  } else if (result.message) {
+    result = {message: result.message}
+  }
 
-  return stdout
+  return result
 }
