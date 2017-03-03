@@ -1,6 +1,6 @@
 {
   "name": "browser-catch",
-  "version": "0.0.1-alpha.4",
+  "version": "0.1.0-alpha.1",
   "description": "An easier way to catch browser runtime console errors.",
   "license": "MIT",
   "bin": {
