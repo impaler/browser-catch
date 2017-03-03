@@ -1,8 +1,48 @@
+const fs = require('fs')
+const { seriesSettled } = require('promise-sequences')
+
 import loadDriver from './drivers/driver'
+import { CONFIG_TYPE, DEFAULT_OPTIONS } from './constants'
+import { readFile, readFileBabel } from './lib/script-loader'
 import { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 export { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 
+export async function browserCatch (task, options) {
+  if (task.type === CONFIG_TYPE.url) {
+    return browserCatchUrl(task.url, options)
+  } else if (task.type === CONFIG_TYPE.config) {
+    return browserCatchConfig(task.path, options)
+  } else {
+    throw new Error(`browserCatch unknown task TYPE, please specify a type such as ${Object.keys(CONFIG_TYPE)}`)
+  }
+}
+
+export async function browserCatchConfig (configPath, options) {
+  options = assignDefaultOptions(options)
+
+  let config = await readFile(configPath)
+  let results
+
+  if (config && config.urls) {
+    let tasks = config.urls.map(url => () => browserCatchUrl(url, options))
+    results = await seriesSettled(tasks, options.concurrent)
+
+    let errors = results.filter(result => result.state !== 'resolved')
+    if (errors.length > 0) {
+      if (options.verbose) {
+        console.log(`There were ${errors.length} errors in the task`)
+        errors.forEach(error => console.error(error))
+      }
+      throw errors
+    }
+    return results
+  } else {
+    throw new Error('browserCatchConfig you need to provide a config["urls"] array in your config object')
+  }
+}
+
 export async function browserCatchUrl (url, options) {
+  options = assignDefaultOptions(options)
   let driver
 
   try {
@@ -18,7 +58,8 @@ export async function browserCatchUrl (url, options) {
     await gotoUrl(client, url)
 
     if (options.run) {
-      await runScript(options.run, client, options)
+      let script = await loadScript(options.run, options)
+      await runScript(script, client, options)
     }
 
     // http://webdriver.io/api/utility/waitForExist.html
@@ -50,7 +91,8 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
       end,
       url,
       driverType: options.driverType,
-      errors
+      errors,
+      options,
     }
   } catch (error) {
     if (driver) driver.kill()
@@ -59,15 +101,32 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
   }
 }
 
-async function runScript(scriptPath, client, options) {
-  if (options.verbose) console.log(`Using --run script path ${options.run}`)
+export function assignDefaultOptions (options) {
+  let assigned = Object.assign({}, DEFAULT_OPTIONS, options)
+  if (assigned.verbose) console.log(assigned)
+  return assigned
+}
+
+async function runScript (script, client, options) {
+  try {
+    await script(client, options)
+  } catch (error) {
+    if (options.verbose) console.error(`custom script has thrown an error`, error)
+    throw error
+  }
+}
+
+async function loadScript (scriptPath, options) {
+  if (options.verbose) console.log(`Loading run script from path ${options.run}`)
+
+  let customScript
 
   try {
-    require('babel-register') // allow es6 in custom script
-    let customScript = require(scriptPath)
-    await customScript(client, options)
-  } catch(error) {
+    customScript = await readFileBabel(scriptPath)
+  } catch (error) {
     console.error(`Could not load script your --run option ${scriptPath}`)
     throw error
   }
+
+  return customScript
 }
