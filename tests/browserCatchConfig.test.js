@@ -1,5 +1,4 @@
 import test from 'ava'
-const path = require('path')
 
 import fixtureServer from './fixtures/server/server'
 import { browserCatchConfig } from '../src/index'
