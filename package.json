@@ -17,7 +17,7 @@
     "build:deploy": "rm -rf dist && babel src -d dist",
     "build:watch": "npm run build -- --watch",
     "test": "npm run test:ava",
-    "test:watch": "npm run test:phantomjs -- --watch",
+    "test:watch": "npm run test:ava -- --watch",
     "test:all": "npm run test:phantomjs; npm run test:webdriver",
     "test:ava": "ava",
     "test:webdriver": "npm run chromedriver:start; ava --match='!*webdriver-custom-url*'; npm run chromedriver:stop",
