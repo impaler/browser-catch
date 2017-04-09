@@ -1,0 +1,92 @@
+{
+  "catching 1 error from two urls": [
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    }
+  ]
+}

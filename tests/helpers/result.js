@@ -23,31 +23,17 @@ export function stripDefaultReporterHack (stdout, options) {
 }
 
 export function stripResult (result, port) {
-  if (Array.isArray(result)) {
-    result = stripResults(result, port)
+  let strippedResult = Object.assign({}, result)
+  if (Array.isArray(strippedResult)) {
+    strippedResult = stripResults(strippedResult, port)
   } else {
-    result = stripTimestamps(result, port)
+    strippedResult = stripTimestamps(strippedResult, port)
   }
-  return result
+  return strippedResult
 }
 
-const filterResult = (results, state) => results
-  .filter(result => result.state === state)
-  .map(item => item.result)
-
-const stripTimestampResults = (timestamps, port) => timestamps.map(item => stripTimestamps(item, port))
-
-function stripResults (results, port) {
-  let rejected = filterResult(results, 'rejected')
-  let resolved = filterResult(results, 'resolved')
-
-  rejected = stripTimestampResults(rejected, port)
-  resolved = stripTimestampResults(resolved, port)
-
-  return {
-    rejected,
-    resolved,
-  }
+export function stripResults (results, port) {
+  return results.map(result => stripResult(result, port))
 }
 
 function stripTimestamps (result, port) {
