@@ -41,6 +41,7 @@ export async function browserCatchUrls (urls, options) {
   let errors = results.filter(result => result.state !== 'resolved')
 
   if (errors.length > 0) {
+    errors = errors.map(error => error.result.message)
     if (options.verbose) {
       console.log(`There were ${errors.length} errors in the task`)
       errors.forEach(error => console.error(error))
@@ -48,7 +49,11 @@ export async function browserCatchUrls (urls, options) {
     throw errors
   } else {
     results = results.map(result => result.result)
-    return results
+    let errorCount = results.map(result => result.errors.length).reduce((a,b)=> a+b)
+    return {
+      results,
+      errorCount
+    }
   }
 }
 

@@ -14,13 +14,14 @@ test('catching 1 error from two urls', async t => {
     `${serverSettings.url}/error`,
     `${serverSettings.url}/error`,
   ]
-  const results = await browserCatchUrls(urls)
-  const snapshot = stripResults(results, serverSettings.port)
+  const urlsResults = await browserCatchUrls(urls)
+  t.is(urlsResults.errorCount, 4)
 
-  for (let result of results) {
+  for (let result of urlsResults.results) {
     t.is(result.driverType, DRIVER_TYPE)
     t.is(result.errors.length, 1)
   }
 
+  const snapshot = stripResults(urlsResults.results, serverSettings.port)
   t.snapshot(snapshot)
 })
