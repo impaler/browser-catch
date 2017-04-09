@@ -30,8 +30,8 @@
   "dependencies": {
     "ansicolors": "^0.3.2",
     "babel-core": "^6.22.1",
-    "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-preset-es2017": "^6.22.0",
     "commander": "^2.9.0",
     "express": "^4.14.0",
@@ -44,12 +44,13 @@
     "ava": "avajs/ava#34c38175ca337f68f29acd750e480bf10ed1a391",
     "babel-cli": "^6.18.0",
     "babel-register": "^6.22.0",
-    "temp-write": "^3.0.0",
     "eslint": "^3.9.0",
-    "node-fetch": "^1.6.3",
     "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "node-fetch": "^1.6.3",
+    "temp-write": "^3.0.0"
   },
   "ava": {
     "require": "babel-register",
