@@ -1,7 +1,7 @@
 import test from 'ava'
 
 import fixtureServer from './fixtures/server/server'
-import { browserCatchConfig } from '../src/index'
+import { catchConfig } from '../src/index'
 import { stripResults } from './helpers/result'
 import { writeTempJSFile, writeTempJSONFile } from './helpers/io'
 
@@ -18,7 +18,7 @@ test('running a config in es6 with an array of urls', async t => {
     ]
   }, 'urls-config-test.js')
 
-  const urlsResults = await browserCatchConfig(configPath)
+  const urlsResults = await catchConfig(configPath)
   t.is(urlsResults.errorCount, 4)
 
   for (let result of urlsResults.results) {
@@ -42,7 +42,7 @@ test('throwing if any of the urls fail', async t => {
     ]
   }, 'urls-config-test.js')
 
-  const error = await t.throws(browserCatchConfig(configPath))
+  const error = await t.throws(catchConfig(configPath))
   t.snapshot(error)
 })
 
@@ -57,7 +57,7 @@ test('running a config in json with an array of urls', async t => {
     ]
   }, 'urls-config-test.json')
 
-  const urlsResults = await browserCatchConfig(configPath)
+  const urlsResults = await catchConfig(configPath)
   t.is(urlsResults.errorCount, 4)
 
   for (let result of urlsResults.results) {

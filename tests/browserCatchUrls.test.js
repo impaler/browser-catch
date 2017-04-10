@@ -1,7 +1,7 @@
 import test from 'ava'
 
 import fixtureServer from './fixtures/server/server'
-import { browserCatchUrls } from '../src/index'
+import { catchUrls } from '../src/index'
 import { stripResults } from './helpers/result'
 
 const DRIVER_TYPE = 'phantomjs'
@@ -14,7 +14,7 @@ test('catching 4 errors from 4 urls', async t => {
     `${serverSettings.url}/error`,
     `${serverSettings.url}/error`,
   ]
-  const urlsResults = await browserCatchUrls(urls)
+  const urlsResults = await catchUrls(urls)
   t.is(urlsResults.errorCount, 4)
 
   for (let result of urlsResults.results) {
@@ -34,7 +34,7 @@ test('catching 34 errors from different urls', async t => {
     `${serverSettings.url}/error?count=12`,
     `${serverSettings.url}/error`,
   ]
-  const urlsResults = await browserCatchUrls(urls)
+  const urlsResults = await catchUrls(urls)
   t.is(urlsResults.errorCount, 34)
 
   for (let result of urlsResults.results) {
@@ -50,6 +50,6 @@ test('throwing on any invalid urls', async t => {
     `http://unconscious/error?count=20`,
     `http://unconscious/error?count=20`
   ]
-  const error = await t.throws(browserCatchUrls(urls))
+  const error = await t.throws(catchUrls(urls))
   t.snapshot(error)
 })

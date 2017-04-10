@@ -2,14 +2,14 @@ import test from 'ava'
 const path = require('path')
 
 import fixtureServer from './fixtures/server/server'
-import { browserCatchUrl } from '../src/index'
+import { catchUrl } from '../src/index'
 import { stripResult } from './helpers/result'
 
 const DRIVER_TYPE = 'phantomjs'
 
 test('catching 1 error from a url', async t => {
   const serverSettings = await fixtureServer()
-  const result = await browserCatchUrl(`${serverSettings.url}/error`)
+  const result = await catchUrl(`${serverSettings.url}/error`)
   const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
@@ -18,13 +18,13 @@ test('catching 1 error from a url', async t => {
 })
 
 test('throwing on an invalid url', async t => {
-  const error = await t.throws(browserCatchUrl(`http://wow/invalid`))
+  const error = await t.throws(catchUrl(`http://wow/invalid`))
   t.snapshot(error.message)
 })
 
 test('catching 10 errors from a url', async t => {
   const serverSettings = await fixtureServer()
-  const result = await browserCatchUrl(`${serverSettings.url}/error?count=10`)
+  const result = await catchUrl(`${serverSettings.url}/error?count=10`)
   const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
@@ -34,7 +34,7 @@ test('catching 10 errors from a url', async t => {
 
 test('catching no errors from a valid url', async t => {
   const serverSettings = await fixtureServer()
-  const result = await browserCatchUrl(`${serverSettings.url}`)
+  const result = await catchUrl(`${serverSettings.url}`)
   const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
@@ -49,7 +49,7 @@ test('waitForExist option waits for an element to exist while catching errors', 
     waitForExist: `.appended-after-${waitDuration}`
   }
   const start = new Date()
-  const result = await browserCatchUrl(`${serverSettings.url}/append-element-after`, options)
+  const result = await catchUrl(`${serverSettings.url}/append-element-after`, options)
   const duration = new Date() - start
 
   t.true(duration > waitDuration)
@@ -68,7 +68,7 @@ test('waitForExist & waitForExistMs options to wait for a custom time for an ele
     waitForExistMs: waitDuration + 500
   }
   const start = new Date()
-  const result = await browserCatchUrl(`${serverSettings.url}/append-element-after?duration=${waitDuration}`, options)
+  const result = await catchUrl(`${serverSettings.url}/append-element-after?duration=${waitDuration}`, options)
   const duration = new Date() - start
 
   t.true(duration > waitDuration)
@@ -85,7 +85,7 @@ test('run option to execute a custom async script with webdriver context and opt
   const options = {
     run: runScriptPath
   }
-  const result = await browserCatchUrl(`${serverSettings.url}/dogs`, options)
+  const result = await catchUrl(`${serverSettings.url}/dogs`, options)
 
   t.is(result.driverType, DRIVER_TYPE)
   t.is(result.errorCount, 1)

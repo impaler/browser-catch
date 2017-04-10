@@ -3,7 +3,7 @@
 const program = require('commander')
 const parseIntDefault = (val) => parseInt(val, 10) // current issue with commander
 
-const browserCatch = require('../dist').browserCatch
+const browserCatch = require('../dist').default
 const assignDefaultOptions = require('../dist').assignDefaultOptions
 const DEFAULT_OPTIONS = require('../dist/constants').DEFAULT_OPTIONS
 const reporter = require('../dist/reporters/reporter')
