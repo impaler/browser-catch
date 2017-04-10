@@ -80,15 +80,22 @@ This library can also be used easily as any other npm module:
 npm i browser-catch
 ```
 
-The main part of the public api is based on `browserCatchUrl`.
+The main part of the public api is based on `catchUrl`. Multiple urls can also be called used with  `catchUrls`, which accepts an array of urls. The options that can be passed through are the same available in the cli client, for example:
 
 ```
-const { browserCatchUrl } = requrie('browser-catch')
+const { catchUrls } = require('browser-catch')
 
-browserCatchUrl('google.com')
-    .then(results => {
-        // results.errors [...] contain all console errors
-        // results.errorCount Number total console error
+const urls = [
+    'http://awesomeapp',
+    'http://awesomeapp/about',
+    'http://awesomeapp/contact',
+    'http://awesomeapp/cart'
+]
+
+catchUrls(urls, options)
+    .then(result => {
+        // result.results [...] contain all console errors
+        // result.errorCount Number total console error
     })
     .catch(error => {
         // this throws only when there is an issue with webdriver, like an invalid url
