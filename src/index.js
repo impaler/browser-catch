@@ -49,7 +49,10 @@ export async function browserCatchUrls (urls, options) {
     throw errors
   } else {
     results = results.map(result => result.result)
-    let errorCount = results.map(result => result.errors.length).reduce((a,b)=> a+b)
+    let errorCount = results
+      .map(result => result.errors.length)
+      .reduce((a, b) => a + b)
+
     return {
       results,
       errorCount
@@ -110,6 +113,7 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
       url: url,
       driverType: options.driverType,
       errors,
+      errorCount: errors.length,
       options,
     }
   } catch (error) {

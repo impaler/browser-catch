@@ -28,7 +28,7 @@ test('catching 10 errors from a url', async t => {
   const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
-  t.is(result.errors.length, 10)
+  t.is(result.errorCount, 10)
   t.snapshot(snapshot)
 })
 
@@ -38,7 +38,7 @@ test('catching no errors from a valid url', async t => {
   const snapshot = stripResult(result, serverSettings.port)
 
   t.is(result.driverType, DRIVER_TYPE)
-  t.is(result.errors.length, 0)
+  t.is(result.errorCount, 0)
   t.snapshot(snapshot)
 })
 
@@ -54,7 +54,7 @@ test('waitForExist option waits for an element to exist while catching errors', 
 
   t.true(duration > waitDuration)
   t.is(result.driverType, DRIVER_TYPE)
-  t.is(result.errors.length, 2)
+  t.is(result.errorCount, 2)
 
   const snapshot = stripResult(result, serverSettings.port)
   t.snapshot(snapshot)
@@ -73,7 +73,7 @@ test('waitForExist & waitForExistMs options to wait for a custom time for an ele
 
   t.true(duration > waitDuration)
   t.is(result.driverType, DRIVER_TYPE)
-  t.is(result.errors.length, 2)
+  t.is(result.errorCount, 2)
 
   const snapshot = stripResult(result, serverSettings.port)
   t.snapshot(snapshot)
@@ -88,7 +88,7 @@ test('run option to execute a custom async script with webdriver context and opt
   const result = await browserCatchUrl(`${serverSettings.url}/dogs`, options)
 
   t.is(result.driverType, DRIVER_TYPE)
-  t.is(result.errors.length, 1)
+  t.is(result.errorCount, 1)
 
   const snapshot = stripResult(result, serverSettings.port)
   t.snapshot(snapshot)

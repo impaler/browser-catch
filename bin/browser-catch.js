@@ -36,10 +36,12 @@ if (program.args.length > 0) {
   const firstArgument = parseFirstArgument(program.args[0])
   const options = assignDefaultOptions(program)
 
-  if (options.verbose) console.log(`
+  if (options.verbose) {
+    console.log(`
 Running browser-catch with command options:
 ${JSON.stringify(options, null, 2)}
 `)
+  }
 
   browserCatch(firstArgument, options)
     .then(onDone.bind(null, options))
@@ -51,15 +53,6 @@ ${JSON.stringify(options, null, 2)}
 }
 
 function onDone (options, result) {
-  if(Array.isArray(result)) { //errors??
-    result = result.map(item => {
-      delete item.options
-      return item
-    })
-  } else {
-    delete result.options
-  }
-
   reporter.report(result, options)
 
   const errorCount = reporter.countErrors(result)

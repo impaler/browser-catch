@@ -8,6 +8,7 @@
           "message": "A regular console.error\n  error (:0)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -30,6 +31,7 @@
           "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -52,6 +54,7 @@
           "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -74,6 +77,7 @@
           "message": "A regular console.error\n  error (:0)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -98,6 +102,7 @@
           "message": "A regular console.error\n  error (:0)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -120,6 +125,7 @@
           "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -142,6 +148,7 @@
           "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
@@ -164,6 +171,7 @@
           "message": "A regular console.error\n  error (:0)"
         }
       ],
+      "errorCount": 1,
       "options": {
         "json": null,
         "verbose": false,
