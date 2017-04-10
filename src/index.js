@@ -1,4 +1,3 @@
-const fs = require('fs')
 const { seriesSettled } = require('promise-sequences')
 
 import loadDriver from './drivers/driver'
@@ -7,41 +6,61 @@ import { readFile, readFileBabel } from './lib/script-loader'
 import { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 export { create, getBrowserLogs, gotoUrl } from './client/webdriverio-log'
 
-export async function browserCatch (task, options) {
+export default async function (task, options) {
   if (task.type === CONFIG_TYPE.url) {
-    return browserCatchUrl(task.url, options)
+    return catchUrl(task.url, options)
   } else if (task.type === CONFIG_TYPE.config) {
-    return browserCatchConfig(task.path, options)
+    return catchConfig(task.path, options)
   } else {
     throw new Error(`browserCatch unknown task TYPE, please specify a type such as ${Object.keys(CONFIG_TYPE)}`)
   }
 }
 
-export async function browserCatchConfig (configPath, options) {
-  options = assignDefaultOptions(options)
-
+export async function catchConfig (configPath, options) {
   let config = await readFile(configPath)
-  let results
 
   if (config && config.urls) {
-    let tasks = config.urls.map(url => () => browserCatchUrl(url, options))
-    results = await seriesSettled(tasks, options.concurrent)
-
-    let errors = results.filter(result => result.state !== 'resolved')
-    if (errors.length > 0) {
-      if (options.verbose) {
-        console.log(`There were ${errors.length} errors in the task`)
-        errors.forEach(error => console.error(error))
-      }
-      throw errors
-    }
+    let results = await catchUrls(config.urls, options)
     return results
   } else {
-    throw new Error('browserCatchConfig you need to provide a config["urls"] array in your config object')
+    throw new Error('catchConfig you need to provide a config["urls"] array in your config object')
   }
 }
 
-export async function browserCatchUrl (url, options) {
+export async function catchUrls (urls, options) {
+  options = assignDefaultOptions(options)
+
+  if (!Array.isArray(urls) || urls.length <= 0) {
+    throw new Error('catchUrls expects an array of urls with a length greater than 1')
+  }
+
+  let results
+
+  let tasks = urls.map(url => () => catchUrl(url, options))
+  results = await seriesSettled(tasks, options.concurrent)
+  let errors = results.filter(result => result.state !== 'resolved')
+
+  if (errors.length > 0) {
+    errors = errors.map(error => error.result.message)
+    if (options.verbose) {
+      console.log(`There were ${errors.length} errors in the task`)
+      errors.forEach(error => console.error(error))
+    }
+    throw errors
+  } else {
+    results = results.map(result => result.result)
+    let errorCount = results
+      .map(result => result.errors.length)
+      .reduce((a, b) => a + b)
+
+    return {
+      results,
+      errorCount
+    }
+  }
+}
+
+export async function catchUrl (url, options) {
   options = assignDefaultOptions(options)
   let driver
 
@@ -64,10 +83,12 @@ export async function browserCatchUrl (url, options) {
 
     // http://webdriver.io/api/utility/waitForExist.html
     if (options.waitForExist) {
-      if (options.verbose) console.log(`
+      if (options.verbose) {
+        console.log(`
 Now waitForExist selector ${options.waitForExist} 
 for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
 `)
+      }
       await client.waitForExist(
         options.waitForExist,
         options.waitForExistMs,
@@ -89,9 +110,10 @@ for ${options.waitForExistMs}ms & reverse ${options.waitForExistReverse}
     return {
       start,
       end,
-      url,
+      url: url,
       driverType: options.driverType,
       errors,
+      errorCount: errors.length,
       options,
     }
   } catch (error) {

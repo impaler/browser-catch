@@ -1,0 +1,404 @@
+{
+  "catching 1 error from two urls": [
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    }
+  ],
+  "catching 34 errors from different urls": [
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=20:6)"
+        }
+      ],
+      "errorCount": 20,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        },
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  global code (http://127.0.1.1:9999/error?count=12:6)"
+        }
+      ],
+      "errorCount": 12,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    }
+  ],
+  "throwing on any invalid urls": [
+    "\nThe url \"http://unconscious/error?count=20\" did not load, currentUrl is \"about:blank\"\n",
+    "\nThe url \"http://unconscious/error?count=20\" did not load, currentUrl is \"about:blank\"\n"
+  ],
+  "catching 4 errors from 4 urls": [
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    }
+  ]
+}

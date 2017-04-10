@@ -15,11 +15,11 @@ export const BROWSER_LOG_LEVELS = {
 export const BABEL_CONFIG = {
   babelrc: false,
   presets: [
-    "es2017"
+    'es2017'
   ],
   plugins: [
-    "transform-es2015-modules-commonjs",
-    "transform-es2015-spread"
+    'transform-es2015-modules-commonjs',
+    'transform-es2015-spread'
   ]
 }
 

@@ -1,9 +1,8 @@
 import test from 'ava'
-const path = require('path')
 
 import fixtureServer from './fixtures/server/server'
-import { browserCatchConfig } from '../src/index'
-import { stripResult } from './helpers/result'
+import { catchConfig } from '../src/index'
+import { stripResults } from './helpers/result'
 import { writeTempJSFile, writeTempJSONFile } from './helpers/io'
 
 const DRIVER_TYPE = 'phantomjs'
@@ -19,17 +18,15 @@ test('running a config in es6 with an array of urls', async t => {
     ]
   }, 'urls-config-test.js')
 
-  const results = await browserCatchConfig(configPath)
-  t.is(results.length, 4)
+  const urlsResults = await catchConfig(configPath)
+  t.is(urlsResults.errorCount, 4)
 
-  for (let urlResult of results) {
-    t.is(urlResult.state, 'resolved')
-    let result = urlResult.result
+  for (let result of urlsResults.results) {
     t.is(result.driverType, DRIVER_TYPE)
     t.is(result.errors.length, 1)
   }
 
-  const snapshot = stripResult(results, serverSettings.port)
+  const snapshot = stripResults(urlsResults.results, serverSettings.port)
   t.snapshot(snapshot)
 })
 
@@ -45,9 +42,8 @@ test('throwing if any of the urls fail', async t => {
     ]
   }, 'urls-config-test.js')
 
-  const error = await t.throws(browserCatchConfig(configPath))
-  const snapshot = stripResult(error, serverSettings.port)
-  t.snapshot(snapshot)
+  const error = await t.throws(catchConfig(configPath))
+  t.snapshot(error)
 })
 
 test('running a config in json with an array of urls', async t => {
@@ -61,16 +57,14 @@ test('running a config in json with an array of urls', async t => {
     ]
   }, 'urls-config-test.json')
 
-  const results = await browserCatchConfig(configPath)
-  t.is(results.length, 4)
+  const urlsResults = await catchConfig(configPath)
+  t.is(urlsResults.errorCount, 4)
 
-  for (let urlResult of results) {
-    t.is(urlResult.state, 'resolved')
-    let result = urlResult.result
+  for (let result of urlsResults.results) {
     t.is(result.driverType, DRIVER_TYPE)
     t.is(result.errors.length, 1)
   }
 
-  const snapshot = stripResult(results, serverSettings.port)
+  const snapshot = stripResults(urlsResults.results, serverSettings.port)
   t.snapshot(snapshot)
 })

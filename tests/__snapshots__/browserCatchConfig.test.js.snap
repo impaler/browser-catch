@@ -1,216 +1,195 @@
 {
-  "running a config in es6 with an array of urls": {
-    "rejected": [],
-    "resolved": [
-      {
-        "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "A regular console.error\n  error (:0)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
+  "running a config in es6 with an array of urls": [
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
         }
-      },
-      {
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
         "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
-        }
-      },
-      {
-        "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
-        }
-      },
-      {
-        "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "A regular console.error\n  error (:0)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
-        }
+        "concurrent": 1
       }
-    ]
-  },
-  "running a config in json with an array of urls": {
-    "rejected": [],
-    "resolved": [
-      {
-        "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "A regular console.error\n  error (:0)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
         }
-      },
-      {
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
         "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
-        }
-      },
-      {
-        "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
-        }
-      },
-      {
-        "driverType": "phantomjs",
-        "errors": [
-          {
-            "level": "SEVERE",
-            "message": "A regular console.error\n  error (:0)"
-          }
-        ],
-        "options": {
-          "json": null,
-          "verbose": false,
-          "waitForExist": false,
-          "waitForExistReverse": false,
-          "waitForExistMs": 10000,
-          "pause": 0,
-          "run": null,
-          "webdriverHost": "127.0.0.1",
-          "webdriverPort": 4444,
-          "driverType": "phantomjs",
-          "concurrent": 1
-        }
+        "concurrent": 1
       }
-    ]
-  },
-  "running a config in es6 with an array of urls rejects": {
-    "rejected": [
-      {
-        "message": "\nThe url \"http://somerandom/invalid\" did not load, currentUrl is \"about:blank\"\n"
-      },
-      {
-        "message": "\nThe url \"http://yourkidding\" did not load, currentUrl is \"about:blank\"\n"
-      },
-      {
-        "message": "\nThe url \"http://doesnotexist/wow\" did not load, currentUrl is \"about:blank\"\n"
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
       }
-    ],
-    "resolved": []
-  },
-  "throwing if any of the urls fail": {
-    "rejected": [
-      {
-        "message": "\nThe url \"http://somerandom/invalid\" did not load, currentUrl is \"about:blank\"\n"
-      },
-      {
-        "message": "\nThe url \"http://yourkidding\" did not load, currentUrl is \"about:blank\"\n"
-      },
-      {
-        "message": "\nThe url \"http://doesnotexist/wow\" did not load, currentUrl is \"about:blank\"\n"
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
       }
-    ],
-    "resolved": []
-  }
+    }
+  ],
+  "running a config in json with an array of urls": [
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "Error: A throw in js\n  global code (http://127.0.1.1:9999/throw:6)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    },
+    {
+      "driverType": "phantomjs",
+      "errors": [
+        {
+          "level": "SEVERE",
+          "message": "A regular console.error\n  error (:0)"
+        }
+      ],
+      "errorCount": 1,
+      "options": {
+        "json": null,
+        "verbose": false,
+        "waitForExist": false,
+        "waitForExistReverse": false,
+        "waitForExistMs": 10000,
+        "pause": 0,
+        "run": null,
+        "webdriverHost": "127.0.0.1",
+        "webdriverPort": 4444,
+        "driverType": "phantomjs",
+        "concurrent": 1
+      }
+    }
+  ],
+  "throwing if any of the urls fail": [
+    "\nThe url \"http://somerandom/invalid\" did not load, currentUrl is \"about:blank\"\n",
+    "\nThe url \"http://yourkidding\" did not load, currentUrl is \"about:blank\"\n",
+    "\nThe url \"http://doesnotexist/wow\" did not load, currentUrl is \"about:blank\"\n"
+  ]
 }
